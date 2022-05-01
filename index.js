@@ -17,6 +17,7 @@ function keyDownEventHandler(e){
     else if(e.keyCode==40 && direction!=0) direction = 1; // down
     else if(e.keyCode==37 && direction!=3) direction = 2; // left
     else if(e.keyCode==39 && direction!=2) direction = 3; // right
+    move(direction);
 }
 
 // 초기 설정
@@ -30,6 +31,7 @@ function init(){
   direction=-1;
   speed=200;
   keepMove = setInterval("move(direction)",speed);
+
 }
 
 // 보드판 표시
@@ -62,14 +64,17 @@ function drawWall(){
 
 // 뱀 표시
 function setSnake(y,x){
-  snakeQueue.push(new Array(y,x));
+  snakeQueue.push(Array(y,x));
   document.getElementById(String(y)+" "+String(x)).style.background = snakeColor;
+  document.getElementById(String(y)+" "+String(x)).style.borderRadius = "0px";
+  
 }
 function removeSnake(){
   var ty = snakeQueue[0][0];
   var tx = snakeQueue[0][1];
   snakeQueue.shift();
   document.getElementById(String(ty)+" "+String(tx)).style.background = tileColor;
+  document.getElementById(String(ty)+" "+String(tx)).style.borderRadius = "0px";
 }
 
 // 뱀 조작
@@ -83,6 +88,18 @@ function move(direction){
   }
   if(isInvalidMove(y,x)) gameover();
   setSnake(y,x);
+  //removeSnake(y,x);
+  eatApple();
+}
+
+// 사과 먹는 함수
+function eatApple(){
+  if(isApple()){
+      setApple();
+  }
+  else{
+      removeSnake(y,x);
+  }
 }
 
 // 뱀 충돌 관련 함수
@@ -105,14 +122,14 @@ function isInQueue(y,x){
 function setApple(){
   do{
       var rand = parseInt(Math.random()*((MY-2)*(MX-2)));
-      cy=parseInt(rand/(MX-2))+1;
-      cx=rand%(MX-2)+1;
-  }while(isInQueue(cy,cx))
-  document.getElementById(String(cy)+" "+String(cx)).style.background = appleColor;
-  document.getElementById(String(cy)+" "+String(cx)).style.borderRadius = "6px";
+      ay=parseInt(rand/(MX-2))+1;
+      ax=rand%(MX-2)+1;
+  }while(isInQueue(ay,ax))
+  document.getElementById(String(ay)+" "+String(ax)).style.background = appleColor;
+  document.getElementById(String(ay)+" "+String(ax)).style.borderRadius = "6px";
 }
 function isApple(){
-  return (y==cy && x==cx);
+  return (y==ay && x==ax);
 }
 
 // 게임 오버
