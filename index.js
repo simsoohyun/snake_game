@@ -17,7 +17,7 @@ function keyDownEventHandler(e){
     else if(e.keyCode==40 && direction!=0) direction = 1; // down
     else if(e.keyCode==37 && direction!=3) direction = 2; // left
     else if(e.keyCode==39 && direction!=2) direction = 3; // right
-    move(direction);
+    // move(direction);
 }
 
 // 초기 설정
@@ -88,7 +88,6 @@ function move(direction){
   }
   if(isInvalidMove(y,x)) gameover();
   setSnake(y,x);
-  //removeSnake(y,x);
   eatApple();
 }
 
@@ -112,16 +111,18 @@ function isCollapsed(y,x){
 }
 function isInQueue(y,x){
   var p = new Array(y,x);
-  for(var i=0;i<snakeQueue.length;i++)
-      if(snakeQueue[i][0]==p[0] && snakeQueue[i][1]==p[1])
+  for(var i=0;i<snakeQueue.length;i++) {
+      if(snakeQueue[i][0]==p[0] && snakeQueue[i][1]==p[1]) {
           return true;
+      }
+  }
   return false;
 }
 
 // 먹이 생성 및 충돌
 function setApple(){
   do{
-      var rand = parseInt(Math.random()*((MY-2)*(MX-2)));
+      var rand = parseInt(Math.random()*((MY-2)*(MX-2))); 113
       ay=parseInt(rand/(MX-2))+1;
       ax=rand%(MX-2)+1;
   }while(isInQueue(ay,ax))
