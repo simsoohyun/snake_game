@@ -1,5 +1,5 @@
 var y,x; // player
-var MY=17, MX=17; // 필드 크기
+var fieldY=17, fieldX=17; // 필드 크기
 var keepMove;
 var direction; // 0 1 2 3 상 하 좌 우
 var snakeQueue = new Array();
@@ -17,15 +17,14 @@ function keyDownEventHandler(e){
     else if(e.keyCode==40 && direction!=0) direction = 1; // down
     else if(e.keyCode==37 && direction!=3) direction = 2; // left
     else if(e.keyCode==39 && direction!=2) direction = 3; // right
-    // move(direction);
 }
 
 // 초기 설정
 function init(){
   drawBoard();
   drawWall();
-  y=parseInt(MY/2);
-  x=parseInt(MX/2);
+  y=parseInt(fieldY/2);
+  x=parseInt(fieldX/2);
   setSnake(y,x);
   setApple();
   direction=-1;
@@ -37,9 +36,9 @@ function init(){
 // 보드판 표시
 function drawBoard(){
   var boardTag = "<table border=0px>";
-  for(var i=0;i<MY;i++){
+  for(var i=0;i<fieldY;i++){
       boardTag += "<tr>";
-      for(var j=0;j<MX;j++)
+      for(var j=0;j<fieldX;j++)
           boardTag += "<td id=\""+String(i)+" "+String(j)+"\"></td>";
       boardTag += "</tr>";
   }
@@ -49,15 +48,15 @@ function drawBoard(){
 // 벽 표시
 function drawWall(){
   var wallCell = new Array();
-  for(var i=0;i<MY;i++) wallCell.push(new Array(i,0));
-  for(var i=0;i<MY;i++) wallCell.push(new Array(i,MX-1));
-  for(var i=0;i<MX;i++) wallCell.push(new Array(0,i));
-  for(var i=0;i<MX;i++) wallCell.push(new Array(MY-1,i));
+  for(var i=0;i<fieldY;i++) wallCell.push(new Array(i,0));
+  for(var i=0;i<fieldY;i++) wallCell.push(new Array(i,fieldX-1));
+  for(var i=0;i<fieldX;i++) wallCell.push(new Array(0,i));
+  for(var i=0;i<fieldX;i++) wallCell.push(new Array(fieldY-1,i));
   for(var i=0;i<wallCell.length;i++){
-      var wy = wallCell[i][0];
-      var wx = wallCell[i][1];
-      document.getElementById(String(wy)+" "+String(wx)).style.background = wallColor;
-      document.getElementById(String(wy)+" "+String(wx)).style.borderRadius = "2px";
+      var wallY = wallCell[i][0];
+      var wallX = wallCell[i][1];
+      document.getElementById(String(wallY)+" "+String(wallX)).style.background = wallColor;
+      document.getElementById(String(wallY)+" "+String(wallX)).style.borderRadius = "2px";
 
   }
 }
@@ -70,11 +69,11 @@ function setSnake(y,x){
   
 }
 function removeSnake(){
-  var ty = snakeQueue[0][0];
-  var tx = snakeQueue[0][1];
+  var tileY = snakeQueue[0][0];
+  var tileX = snakeQueue[0][1];
   snakeQueue.shift();
-  document.getElementById(String(ty)+" "+String(tx)).style.background = tileColor;
-  document.getElementById(String(ty)+" "+String(tx)).style.borderRadius = "0px";
+  document.getElementById(String(tileY)+" "+String(tileX)).style.background = tileColor;
+  document.getElementById(String(tileY)+" "+String(tileX)).style.borderRadius = "0px";
 }
 
 // 뱀 조작
@@ -103,7 +102,7 @@ function eatApple(){
 
 // 뱀 충돌 관련 함수
 function isInvalidMove(y,x){
-  return (y==0||y==MY-1||x==0||x==MX-1) || isCollapsed(y,x);
+  return (y==0||y==fieldY-1||x==0||x==fieldX-1) || isCollapsed(y,x);
 }
 function isCollapsed(y,x){
   if(isInQueue(y,x)) return true;
@@ -122,15 +121,15 @@ function isInQueue(y,x){
 // 먹이 생성 및 충돌
 function setApple(){
   do{
-      var rand = parseInt(Math.random()*((MY-2)*(MX-2))); 113
-      ay=parseInt(rand/(MX-2))+1;
-      ax=rand%(MX-2)+1;
-  }while(isInQueue(ay,ax))
-  document.getElementById(String(ay)+" "+String(ax)).style.background = appleColor;
-  document.getElementById(String(ay)+" "+String(ax)).style.borderRadius = "6px";
+      var rand = parseInt(Math.random()*((fieldY-2)*(fieldX-2))); 113
+      appleY=parseInt(rand/(fieldX-2))+1;
+      appleX=rand%(fieldX-2)+1;
+  }while(isInQueue(appleY,appleX))
+  document.getElementById(String(appleY)+" "+String(appleX)).style.background = appleColor;
+  document.getElementById(String(appleY)+" "+String(appleX)).style.borderRadius = "6px";
 }
 function isApple(){
-  return (y==ay && x==ax);
+  return (y==appleY && x==appleX);
 }
 
 // 게임 오버
