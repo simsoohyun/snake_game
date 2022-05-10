@@ -1,11 +1,23 @@
 @charset "utf-8";
 
+body{
+    text-align: center;
+}
 a{
     text-decoration: none;
     color: inherit;
 }
-.title{
-    text-align: center;
+.startBtn{
+    display: inline-block;
+    margin: 20px 0 0 0;
+    background-color: #A2A2A1;
+    border-radius: 10px;
+    color: #FDD20E;
+    
+}
+.startBtn a{
+    display: block;
+    padding: 10px;
 }
 table{
     margin:0 auto;

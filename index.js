@@ -1,5 +1,6 @@
 var y,x; // player
 var fieldY=17, fieldX=17; // 필드 크기
+var score;
 var keepMove;
 var direction; // 0 1 2 3 상 하 좌 우
 var snakeQueue = new Array();
@@ -30,7 +31,7 @@ function init(){
   direction=-1;
   speed=200;
   keepMove = setInterval("move(direction)",speed);
-
+  
 }
 
 // 보드판 표시
@@ -88,16 +89,26 @@ function move(direction){
   if(isInvalidMove(y,x)) gameover();
   setSnake(y,x);
   eatApple();
+  scoring();
 }
 
 // 사과 먹는 함수
 function eatApple(){
   if(isApple()){
-      setApple();
+    score+=100*(snakeQueue.length-1);
+    setApple();
+    showPlus();
+    /*document.getElementById(String(y)+" "+String(x)).style.borderRadius = "3px";*/
   }
   else{
       removeSnake(y,x);
+      score+=snakeQueue.length;
   }
+}
+function showPlus(){
+  var plusedScore=100;
+  document.getElementById("plus").innerHTML = "+"+plusedScore;
+  setTimeout("document.getElementById(\"plus\").innerHTML=\"\"",500);
 }
 
 // 뱀 충돌 관련 함수
@@ -132,9 +143,15 @@ function isApple(){
   return (y==appleY && x==appleX);
 }
 
+// 점수 반영
+function scoring(){
+  document.getElementById("score").innerHTML = score;
+}
+
 // 게임 오버
 function gameover(){
     alert("[Game Over]");
     init();
     location.reload();
 }
+
