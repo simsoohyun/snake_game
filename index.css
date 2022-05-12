@@ -1,11 +1,12 @@
 @charset "utf-8";
 
-body{
-    text-align: center;
-}
 a{
     text-decoration: none;
     color: inherit;
+}
+p{
+    margin: 0;
+    padding: 0;
 }
 .startBtn{
     display: inline-block;
@@ -15,9 +16,31 @@ a{
     color: #FDD20E;
     
 }
-.startBtn a{
-    display: block;
-    padding: 10px;
+.game-container{
+    text-align: center;
+}
+.game-container .title{
+    text-align: center;
+}
+.game-container .game-box{
+    display: inline-block;
+}
+.game-container .game-box .score{
+    text-align: right;
+}
+.game-container .game-box .score p{
+    display: inline-block;
+    margin: 10px 0 0 0;
+}
+.game-container .game-box #score{
+    padding: 5px 15px;
+    background: #FDD20E;
+    border-radius: 10px;
+    color: #c72d1b;
+}
+.game-container .game-box #plus{
+    margin: 10px 10px 0 0;
+    color: #c72d1b;
 }
 table{
     margin:0 auto;
@@ -28,6 +51,7 @@ td{
     border: none;
     background: rgb(255, 228, 178);
     box-sizing: border-box;
+    
 }
 
 

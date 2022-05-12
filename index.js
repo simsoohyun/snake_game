@@ -6,7 +6,8 @@ var direction; // 0 1 2 3 상 하 좌 우
 var snakeQueue = new Array();
 var wallColor = "rgb(250, 180, 50)",
     snakeColor = "rgb(0, 84, 0)",
-    appleColor = "rgb(201, 3, 3)",
+    /*appleColor = "rgb(201, 3, 3)",*/
+    /*appleColor = "url(./img/free-icon-apple-1202063.png) no-repeat;",*/
     tileColor = "rgb(255, 228, 178)";
 
 init();
@@ -28,6 +29,7 @@ function init(){
   x=parseInt(fieldX/2);
   setSnake(y,x);
   setApple();
+  score=0;
   direction=-1;
   speed=200;
   keepMove = setInterval("move(direction)",speed);
@@ -95,18 +97,18 @@ function move(direction){
 // 사과 먹는 함수
 function eatApple(){
   if(isApple()){
-    score+=100*(snakeQueue.length-1);
+    score+=10*(snakeQueue.length-1);
     setApple();
     showPlus();
     /*document.getElementById(String(y)+" "+String(x)).style.borderRadius = "3px";*/
   }
   else{
       removeSnake(y,x);
-      score+=snakeQueue.length;
+      
   }
 }
 function showPlus(){
-  var plusedScore=100;
+  var plusedScore=10*(snakeQueue.length-1);
   document.getElementById("plus").innerHTML = "+"+plusedScore;
   setTimeout("document.getElementById(\"plus\").innerHTML=\"\"",500);
 }
@@ -136,8 +138,8 @@ function setApple(){
       appleY=parseInt(rand/(fieldX-2))+1;
       appleX=rand%(fieldX-2)+1;
   }while(isInQueue(appleY,appleX))
-  document.getElementById(String(appleY)+" "+String(appleX)).style.background = appleColor;
-  document.getElementById(String(appleY)+" "+String(appleX)).style.borderRadius = "6px";
+  document.getElementById(String(appleY)+" "+String(appleX)).style.background = "rgb(255, 228, 178) url(./img/free-icon-apple-1202063.png) no-repeat center";
+  /*document.getElementById(String(appleY)+" "+String(appleX)).style.borderRadius = "6px";*/
 }
 function isApple(){
   return (y==appleY && x==appleX);
@@ -150,7 +152,7 @@ function scoring(){
 
 // 게임 오버
 function gameover(){
-    alert("[Game Over]");
+    alert("[[[[[Game Over]]]]]\n당신의 점수는!!! "+score+"점 입니다ㅇ_ㅇ");
     init();
     location.reload();
 }
