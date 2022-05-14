@@ -11,13 +11,18 @@
     <div class="game-container">
         <h1 class="title">SNAKE GAMEEEEE</h1>
         <div class="game-box">
-            <script src="./index.js"></script>
-            <!--<div class="startBtn">
-                <a href="#a" title="start">START</a>
-            </div>-->
-            <div class="score">
+            <div class="play-box">
+                <script src="./index.js"></script>
+                <div class="gameover-box" id="gameover-box">
+                    <h1>GAME OVER!</h1>
+                    <p>당신의 점수는</p>
+                    <p id="final-score">0</p>
+                    <p>점 입니다!!!!!!</p>
+                </div>
+            </div>
+            <div class="score-box">
                 <p id="plus"></p>
-                <p id="score">CURRENT SCORE</p>
+                <p id="score" class="score">CURRENT SCORE</p>
             </div>
         </div>
         

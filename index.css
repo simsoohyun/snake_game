@@ -1,5 +1,21 @@
 @charset "utf-8";
 
+@font-face {
+    font-family: singleSleeve;
+    src: url(./font/sing_14l.ttf);
+}
+@font-face {
+    font-family: creatoDisplay;
+    src: url(./font/CreatoDisplay-Medium.otf);
+}
+@font-face {
+    font-family: beerGoggles;
+    src: url(./font/BEERG___.TTF);
+}
+h1{
+    padding: 0;
+    margin: 0;
+}
 a{
     text-decoration: none;
     color: inherit;
@@ -20,19 +36,52 @@ p{
     text-align: center;
 }
 .game-container .title{
+    padding: 10px 0 20px 0;
+    font-family: singleSleeve;
+    font-size:70px;
+    letter-spacing: 5px;
+    color: #98b932;
     text-align: center;
 }
 .game-container .game-box{
     display: inline-block;
 }
-.game-container .game-box .score{
-    text-align: right;
+.game-container .game-box .play-box{
+    position: relative;
 }
-.game-container .game-box .score p{
+.game-container .game-box .play-box #gameover-box{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*display: flex;
+    justify-content: center;
+    align-items: center;*/
+    width: 100%;
+    /*height: 100%;*/
+    padding: 152px 0;
+    background: rgb(250, 180, 50);
+    
+}
+.game-container .game-box .play-box .gameover-box > h1{
+    padding: 0 0 20px 0;
+    font-family: beerGoggles;
+    color:#c72d1b;
+}
+.game-container .game-box .play-box .gameover-box > p{
+    display: inline-block;
+}
+.game-container .game-box .score-box{
+    font-size: 20px;
+    font-family: creatoDisplay;
+    text-align: right;
+    
+}
+.game-container .game-box .score-box p{
     display: inline-block;
     margin: 10px 0 0 0;
 }
-.game-container .game-box #score{
+.game-container .game-box .score{
     padding: 5px 15px;
     background: #FDD20E;
     border-radius: 10px;
