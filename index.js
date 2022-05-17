@@ -28,7 +28,7 @@ function init(){
   setApple();
   score=0;
   direction=-1;
-  speed=200;
+  speed=194;
   keepMove = setInterval("move(direction)",speed);
 }
 
@@ -95,12 +95,15 @@ function move(direction){
 function eatApple(){
   if(isApple()){
     score+=10*(snakeQueue.length-1);
+    speed = speed - (snakeQueue.length-1);
+    console.log(speed);
+    clearInterval(keepMove);
+    setInterval("move(direction)",speed);
     setApple();
     showPlus();
   }
   else{
       removeSnake(y,x);
-      
   }
 }
 function showPlus(){
@@ -148,13 +151,18 @@ function scoring(){
 
 // 게임 오버
 function gameover(){
-    /*alert("[[[[[Game Over]]]]]\n당신의 점수는!!! "+score+"점 입니다ㅇ_ㅇ");*/
-    /*document.getElementById("gameover-box").style.display = "block";*/
-    init();  
+    document.getElementById("gameover-box").style.display = "block";
     clearInterval(keepMove);
-    
-    location.reload();
 }
+document.getElementById("restart").addEventListener('click', function() {
+  restart();
+})
+function restart(){
+  init();  
+  location.reload();
+}
+
+
 
 
 
