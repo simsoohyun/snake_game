@@ -30,7 +30,6 @@ function init(){
   direction=-1;
   speed=200;
   keepMove = setInterval("move(direction)",speed);
-  
 }
 
 // 보드판 표시
@@ -44,6 +43,7 @@ function drawBoard(){
   }
   boardTag += "</table>"
   document.write(boardTag);
+  
 }
 // 벽 표시
 function drawWall(){
@@ -149,11 +149,13 @@ function scoring(){
 // 게임 오버
 function gameover(){
     /*alert("[[[[[Game Over]]]]]\n당신의 점수는!!! "+score+"점 입니다ㅇ_ㅇ");*/
-    document.getElementById("gameover-box").style.display="block";
-    init();
+    /*document.getElementById("gameover-box").style.display = "block";*/
+    init();  
     clearInterval(keepMove);
+    
     location.reload();
 }
+
 
 
 

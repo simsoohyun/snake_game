@@ -59,17 +59,23 @@ p{
     align-items: center;*/
     width: 100%;
     /*height: 100%;*/
-    padding: 152px 0;
-    background: rgb(250, 180, 50);
+    padding: 140px 0;
+    background: rgb(250, 180, 50, .8);
     
 }
 .game-container .game-box .play-box .gameover-box > h1{
     padding: 0 0 20px 0;
+    font-size: 45px;
     font-family: beerGoggles;
     color:#c72d1b;
 }
 .game-container .game-box .play-box .gameover-box > p{
     display: inline-block;
+    font-size: 18px;
+    color:#c72d1b;
+    font-weight: 600;
+}.game-container .game-box .play-box .gameover-box > p#final-score{
+    font-size: 25px;
 }
 .game-container .game-box .score-box{
     font-size: 20px;
