@@ -95,10 +95,10 @@ function move(direction){
 function eatApple(){
   if(isApple()){
     score+=10*(snakeQueue.length-1);
-    speed = speed - (snakeQueue.length-1);
+    speed = speed - 1.5*(snakeQueue.length-1);
     console.log(speed);
     clearInterval(keepMove);
-    setInterval("move(direction)",speed);
+    keepMove = setInterval("move(direction)",speed);
     setApple();
     showPlus();
   }
@@ -152,7 +152,9 @@ function scoring(){
 // 게임 오버
 function gameover(){
     document.getElementById("gameover-box").style.display = "block";
+    document.querySelector(".score").style.display = "none";
     clearInterval(keepMove);
+    return;
 }
 document.getElementById("restart").addEventListener('click', function() {
   restart();
