@@ -43,7 +43,6 @@ function drawBoard(){
   }
   boardTag += "</table>"
   document.write(boardTag);
-  
 }
 // 벽 표시
 function drawWall(){
@@ -57,7 +56,6 @@ function drawWall(){
       var wallX = wallCell[i][1];
       document.getElementById(String(wallY)+" "+String(wallX)).style.background = wallColor;
       document.getElementById(String(wallY)+" "+String(wallX)).style.borderRadius = "2px";
-
   }
 }
 
@@ -66,7 +64,6 @@ function setSnake(y,x){
   snakeQueue.push(Array(y,x));
   document.getElementById(String(y)+" "+String(x)).style.background = "rgb(255, 228, 178) url(./img/icon-snake.png) no-repeat center";
   document.getElementById(String(y)+" "+String(x)).style.borderRadius = "0px";
-  
 }
 function removeSnake(){
   var tileY = snakeQueue[0][0];
@@ -96,7 +93,6 @@ function eatApple(){
   if(isApple()){
     score+=10*(snakeQueue.length-1);
     speed = speed - 1.5*(snakeQueue.length-1);
-    console.log(speed);
     clearInterval(keepMove);
     keepMove = setInterval("move(direction)",speed);
     setApple();
