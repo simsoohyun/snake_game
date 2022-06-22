@@ -129,7 +129,7 @@ function isInQueue(y,x){
 // 먹이 생성 및 충돌
 function setApple(){
   do{
-      var rand = parseInt(Math.random()*((fieldY-2)*(fieldX-2))); 113
+      var rand = parseInt(Math.random()*((fieldY-2)*(fieldX-2)));
       appleY=parseInt(rand/(fieldX-2))+1;
       appleX=rand%(fieldX-2)+1;
   }while(isInQueue(appleY,appleX))
